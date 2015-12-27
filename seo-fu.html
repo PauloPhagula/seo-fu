@@ -1,0 +1,514 @@
+﻿<!DOCTYPE html>
+<html
+    class="no-js"
+    
+    dir="ltr"
+
+    lang="pt-MZ"
+
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:og="http://ogp.me/ns#"
+    xmlns:fb="http://www.facebook.com/2008/fbml"
+    xmlns:ng="http://angularjs.org"
+
+    prefix="og: http://ogp.me/ns#
+            fb: http://ogp.me/ns/fb#
+            rdfs: http://www.w3.org/2000/01/rdf-schema# 
+            xsd: http://www.w3.org/2001/XMLSchema#"
+
+    manifest="maparato.appcache" 
+
+    data-ng-csp=""
+    data-ng-strict-di="true"
+
+    itemscope="" itemtype="http://schema.org/QAPage"
+    itemscope="" itemtype='http://schema.org/LocalBusiness'
+    itemscope="" itemtype='http://schema.org/Restaurant'
+>
+<head>
+    <!-- Les NoScript / Bad browser, Redirect to safe page before even downloading unnecessary stuff -->
+    <noscript><meta http-equiv="refresh" content="0; URL=/badbrowser"></noscript>
+
+    <!-- Les Basic Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; media-src *">
+    <meta name="viewport" content="width=device-width, 
+                                   initial-scale=1,
+                                   maximum-scale=1,
+                                   user-scalable=no,
+                                   minimal-ui" />
+
+    <!-- Disable Numbers from being interpreted as phonenumbers -->  
+    <meta http-equiv="x-rim-auto-match" content="none" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+
+    <!-- BEGIN: Chrome Perf hints 
+    - https://w3c.github.io/resource-hints/
+    - http://www.htmlgoodies.com/beyond/webmaster/how-your-browser-speeds-up-cross-domain-loading-using-dns-prefetching.html
+    - https://msdn.microsoft.com/en-us/library/dn265039(v=vs.85).aspx
+    -->
+        <!-- 1. Prefetch Hints
+          - pre-resolve DNS hostnames for assets later in the page!
+          - useful for critical resources later in the page
+          - useful for resources behind a redirect
+        -->
+        <meta http-equiv="x-dns-prefetch-control" content="on"/>
+        <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link rel="dns-prefetch" href="//www.google-analytics.com">
+
+        <!-- 2. Subresource Hints 
+          - initiate early resource fetch for current navigation
+          - identifies critical resources required for current page load
+          - they should be placed as early as possible
+        -->
+        <link rel="subresource" href="critical/app.js">
+        <link rel="subresource" href="critical/style.css">
+
+        <!-- 3. Prefetch Hints
+          - prefetch asset for a future navigation, place in cache...
+          - identifies a resource file, such as an image or a CSS stylesheet, to be downloaded into the cache.
+          - identifies resources that may be needed in future navigation
+          - have the lowest possible priority
+        -->
+        <link rel="prefetch" href="font.woff">
+        <link rel="preload" href="font.woff" as="font">
+
+        <!-- 4. Prerender hints
+          - prerender page in background tab for future navigation
+          - Identifies a webpage to load in the background, in case the user wants to navigate to it next.
+          - initiate background render of entire page
+          - the page is fetch, and all of its assets
+          - Use **Page Visibility API** to defer JS actionos until page is visible
+          - Only "safe" pages can be prerendered (aka, GET)
+          - Prerendering is resource heavy - use with caution
+        -->
+        <link rel="prerender" href="//example.org/next_page.html">
+    <!-- END: Chrome Perf hints -->
+
+    <!-- Les International Alternatives -->
+    <link rel="alternate" hreflang="x-default" href="https://www.maparato.co.mz" />
+    <link rel="alternate" hreflang="en" href="https://www.maparato.co.mz/en" title="English" />
+    <link rel="alternate" hreflang="fr" href="https://www.maparato.co.mz/fr" title="Français" />
+
+    <!-- Les Core Meta -->
+    <title>Home | Maparato</title>
+    <meta name="description" content="Maparato - mercado de comida online, para encomendas e reservas em restaurantes, através de telemoveis ou internet, em Moçambique" />
+    <meta name="keywords" content="restaurante, restauração, pastelaria, lanchonete, take-away, menu, refeição, refeições, prato, comida, classificações, críticas, encomenda, delivery, maputo, Moçambique." />
+    <!-- The most prefered url for this page, irrespective of languages or other criteria -->
+    <link rel="canonical" href="http://www.maparato.co.mz" />
+    <link rel="shortlink" href="http://goo.gl/mF0Zkh" />
+
+    <link rel="home" href="/" title="Maparato - Para quem tem fome - A sua refeição a um clique de distância - Encontre os melhores restaurantes em Moçambique" />
+    <link rel="index" href="/" />
+    <link rel="start" href="/" />
+    <link rel="top"  href="/" title="Maparato - A sua refeição a um clique de distância - Encontre os melhores restaurantes em Moçambique" />
+    <link rel="copyright" href="/copyright" />
+    <link rel="help" href="/faq" />
+    <link rel="glossary" href="/glossary" />
+    <meta name="contact" content="info@maparato.co.mz" />
+    <meta name="geography" content="Mozambique">
+
+    <!-- Les Fav Icons & Mobile -->
+    <!-- If using SVG icon remove all following.-->
+    <link rel="icon" sizes="any" mask href="favicons/favicon.svg">
+    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="favicons/favicon-194x194.png" sizes="194x194">
+    <!-- Android Manifest https://developers.google.com/web/fundamentals/device-access/stickyness/web-app-manifest -->
+    <link rel="manifest" href="android-manifest.json">
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicons/apple-touch-icon-57x57.png">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicons/apple-touch-icon-57x57.png" sizes="16x16 32x32 48x48">
+
+    <!-- Les Webpage Icon for Web Clip - Check https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+    https://mathiasbynens.be/notes/touch-icons-->
+    <link rel="apple-touch-icon" sizes="57x57"   href="favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60"   href="favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72"   href="favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76"   href="favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+
+    <!-- Apple Startup Images https://developers.google.com/web/fundamentals/device-access/stickyness/additional-customizations?hl=en-->
+    <!-- iOS 6 & 7 iPad (retina, portrait) -->
+    <link href="/static/images/apple-touch-startup-image-1536x2008.png"
+        media="(device-width: 768px) and (device-height: 1024px)
+                and (orientation: portrait)
+                and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image">
+
+    <!-- iOS 6 & 7 iPad (retina, landscape) -->
+    <link href="/static/images/apple-touch-startup-image-1496x2048.png"
+        media="(device-width: 768px) and (device-height: 1024px)
+                and (orientation: landscape)
+                and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image">
+
+    <!-- iOS 6 iPad (portrait) -->
+    <link href="/static/images/apple-touch-startup-image-768x1004.png"
+        media="(device-width: 768px) and (device-height: 1024px)
+                and (orientation: portrait)
+                and (-webkit-device-pixel-ratio: 1)"
+        rel="apple-touch-startup-image">
+
+    <!-- iOS 6 iPad (landscape) -->
+    <link href="/static/images/apple-touch-startup-image-748x1024.png"
+        media="(device-width: 768px) and (device-height: 1024px)
+                and (orientation: landscape)
+                and (-webkit-device-pixel-ratio: 1)"
+        rel="apple-touch-startup-image">
+
+    <!-- iOS 6 & 7 iPhone 5 -->
+    <link href="/static/images/apple-touch-startup-image-640x1096.png"
+        media="(device-width: 320px) and (device-height: 568px)
+                and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image">
+
+    <!-- iOS 6 & 7 iPhone (retina) -->
+    <link href="/static/images/apple-touch-startup-image-640x920.png"
+        media="(device-width: 320px) and (device-height: 480px)
+                and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image">
+
+    <!-- iOS 6 iPhone -->
+    <link href="/static/images/apple-touch-startup-image-320x460.png"
+        media="(device-width: 320px) and (device-height: 480px)
+                and (-webkit-device-pixel-ratio: 1)"
+        rel="apple-touch-startup-image">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Maparato">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Les Smart App Banner - Check 
+    https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
+    https://msdn.microsoft.com/en-us/library/hh781489(v=vs.85).aspx -->
+    <meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
+    <meta name="google-play-app"  content="app-id=mz.co.maparato.mobile">
+    <meta name="msApplication-ID" content="microsoft.build.App"/>
+    <meta name="msApplication-PackageFamilyName" content="microsoft.build_8wekyb3d8bbwe"/>
+
+    <!-- Les toolbar color for Chrome on Android-->
+    <meta name="theme-color" content="#125688">
+
+    <!-- Mobile Internet Explorer ClearType Technology -->    
+    <meta http-equiv="cleartype" content="on">
+
+    <!-- Let google know which URL to use for Mobile devices-->
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.example.com/page-1" />
+    <link rel="alternate" media="handheld" href="http://phone.example.com/page-1" />
+
+    <!-- Google Indexing for Mobile Apps -->
+    <link rel="alternate" href="android-app://io.kodikos.android.maparato/http/www.youtube.com/watch?v=rMozDzgxTSY">
+    <link rel="alternate" href="ios-app://544007664/vnd.youtube/www.youtube.com/watch?v=rMozDzgxTSY">
+
+    <!-- Les IE9+ and Windows7+ Pinned Tabs
+       http://davidwalsh.name/msapplication-task
+       http://www.hanselman.com/blog/IE9SiteSpecificBrowsersAndAddingYourOwnJumpListItemsToPinnedTabs.aspx
+    -->
+    <meta name="application-name" content="Maparato">
+    <meta name="application-url" content="https://maparato.co.mz">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="msapplication-tooltip" content="Maparato - A sua refeição um clique de distância" />
+    <meta name="msapplication-starturl" content="./" />
+    <meta name="msapplication-navbutton-color" content="#FF3300" />
+    <meta name="msapplication-window" content="width=device-width;height=device-height" />
+    <meta name="msapplication-task" content="name=David Walsh Blog;action-uri=http://davidwalsh.name;icon-uri=http://davidwalsh.name/favicon.ico" />
+    <meta name="msapplication-task" content="name=David Walsh on Twitter;action-uri=http://twitter.com/davidwalshblog;icon-uri=http://twitter.com/favicon.ico" />
+    <meta name="msapplication-task" content="name=David Walsh on Facebook;action-uri=http://www.facebook.com/pages/David-Walsh-Blog/186644584869;icon-uri=https://s-static.ak.facebook.com/rsrc.php/yi/r/q9U99v3_saj.ico" />
+    <meta name="msapplication-task" content="name=David Walsh on LinkedIn;action-uri=http://il.linkedin.com/in/davidjameswalsh;icon-uri=http://linkedin.com/favicon.ico" />
+
+    <!-- Les Windows 8+ Pinned Live Tiles
+       Check
+       http://www.hanselman.com/blog/MakeAWindows81PinnedLiveTileForYOURWebsiteInMinutes.aspx
+    -->
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <!-- Les Me -->
+    <link rel="me" type="text/html" href="http://twitter.com/maparato" />
+    <link rel="me" type="text/html" href="http://facebook.com/maparato" />
+    <link rel="me" type="text/html" href="http://plus.google.com/108573066018819777334?rel=me"/>
+    <meta name="contact" content="info@maparato.co.mz" />
+    <link rel="publisher" href="https://plus.google.com/u/0/110969448173982102496" />
+
+    <!-- Les Humans, Robots and Friends - Check 
+       http://www.robotstxt.org/ and 
+       http://humanstxt.org/
+       http://gmpg.org/xfn/
+    -->
+    <meta name="generator" content="Maparato">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 DAYS">
+    <link rel="author" type="text/plain" href="humans.txt" />
+    <!-- XHTML Friends Network -->
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+
+    <!-- Les Open ID -->
+    <link rel="openid.server" href="https://id.maparato.co.mz/">
+    <link rel="openid.delegate" href="https://id.maparato.co.mz/">
+
+    <!-- Les Twitter Card - Check - https://blog.bufferapp.com/twitter-cards-guide; https://dev.twitter.com/cards/getting-started-->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="">
+    <meta name="twitter:title" content="Panarottis - Richards Bay Central, Richards Bay">
+    <meta name="twitter:description" content="Serves . Cost  R 120 for two people (approx.)">
+    <meta name="twitter:image" content="https://d.zmtcdn.com/data/pictures/0/16518820/91a9c9dc08acd42b3e2509e1640e4922_200_thumb.jpg">
+    <meta name="twitter:site" content="@maparato"/> <!-- The Twitter account for the website/platform on which the content was published -->
+    <meta name="twitter:creator" content="@maparato"> <!-- The Twitter account that created the content within the card -->
+
+    <!-- Les Facebook - Check http://davidwalsh.name/facebook-meta-tags -->
+    <meta property="fb:page_id" content="65878196434"/>
+    <meta property="fb:app_id" content="288523881080"/>
+    <meta property="fb:admins" content="paulo.phagula"/>
+    <meta property="fb:admins" content="cara.diferent"/>
+    <meta property="fb:admins" content="edson.chirindza"/>
+
+    <!-- Les Open Graph Tags - Check http://ogp.me/ -->
+    <meta property="og:locale" content="pt_PT" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Title" />
+    <meta property="og:description" content="description..." />
+    <meta property="og:url" content="http://current.url.com" />
+    <meta property="og:image" content="http://image.url.com/cover.jpg" />
+    <meta property="og:site_name" content="Maparato" />
+
+    <!-- Facebook Post Images. Can be repeated to allow choice when posting -->
+    <link rel="image_src" href="http://URL-TO-YOUR-IMAGE" />
+
+    <!-- Dublin Core Metadata : http://dublincore.org/ -->
+    <meta name="DC.title" content="" >
+    <meta name="DC.creator" content="">
+    <meta name="DC.subject" content="">
+    <meta name="DC.description" content="">
+    <meta name="DC.publisher" content="">
+    <meta name="DC.contributor" content="">
+    <meta name="DC.date" content="">
+    <meta name="DC.type" content="">
+    <meta name="DC.language" content="">
+    <meta name="DC.relation" scheme="URI" content="">
+    <meta name="DC.right" content="">
+
+    <!-- Les Geo -->
+    <meta name="geo.placename" content="" />
+    <meta name="geo.position" content="" />
+    <meta name="geo.region" content="" />
+    <meta name="ICBM" content="" />
+
+    <!-- Les app links - Check http://applinks.org/documentation/-->
+    <meta property="al:iphone:url" content="applinks://docs" />
+    <meta property="al:iphone:app_name" content="Maparato" />
+    <meta property="al:android:app_name" content="Maparato" />
+    <meta property="al:android:package" content="mz.co.maparato" />
+    <meta property="al:web:url" content="https://maparato.co.mz" />
+
+    <!-- Les RSS + ATOM Feed -->
+    <link rel="alternate" type="application/rss+xml" title="Maparato &raquo; Feed" href="http://maparato.co.mz/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="Maparato &raquo; Feed de blogs" href="http://maparato.co.mz/blog/feed/" />
+
+    <!-- Les Open Search -->
+    <link rel="search" type="application/opensearchdescription+xml" href="opensearch.xml" title="Maparato">  
+
+    <!-- Les Google Sitelinks 
+      Search Action description and Fixed Canonical URL to Home Page
+      Check http://schema.org/SearchAction
+    -->
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "publisher": "Maparato",
+        "url": "http://www.maparato.co.mz/", 
+        "description": "Long-form writing by Yehuda Katz,\nco-creator of Ember.js and serial Open Sourcerer."
+        "url": "https://www.maparato.co.mz/", // url - This property specifies the URL of your website. It must match the canonical URL of your domain's homepage
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.maparato.co.mz/search?&q={query}",
+            "query-input": "required"
+        }
+    }
+    </script>
+
+    <script type='application/ld+json'>
+    {
+        "@context":"http://schema.org",
+        "@type":"Organization",
+        "name":"Maparato",
+        "url":"https://www.maparato.co.mz",
+        "logo":"https://www.maparato.co.mz/img/logo.png",
+        "sameAs":[
+            "https://www.facebook.com/smashmag",
+            "https://plus.google.com/+SmashingMagazine\u200e"
+        ],
+        "contactPoint" : [{
+            "@type" : "ContactPoint",
+            "telephone" : "+44 84 5594 6468",
+            "contactType" : "customer service",
+            "availableLanguage" : [
+                "English",
+                "French",
+                "Spanish",
+                "Dutch",
+                "German"
+            ]
+        }]
+    }
+    </script>
+  
+    <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "Product",
+        "name" : "Visual Studio Code",
+        "logo": "https://code.visualstudio.com/Content/images/vscode.ico",
+        "url" : "https://code.visualstudio.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://code.visualstudio.com/Search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        },
+        "sameAs" : [
+            "https://en.wikipedia.org/wiki/Visual_Studio_Code",
+            "https://www.facebook.com/visualstudio",
+            "https://twitter.com/code",
+            "http://blogs.msdn.com/b/vscode"
+        ]
+    }
+    </script>
+
+
+    <!-- Les Verification -->
+    <meta name="alexaVerifyID" content="AAuJHtZv3Oq_gvTIG9p4_VU4mlw" />
+    <meta name="msvalidate.01" content="B07D8F0C9A06A64E6EF53F394C5EE280" />
+    <meta name="google-site-verification" content="CDq-OivF9jCUaxGpNraDyqAjeuTjVA282feHYf3hecg" />
+    <meta name="yandex-verification" content="6ef227110fda6cd9" />
+    <meta name="verify-v1" content="+5YyiwckKNkxZEHzi3qsNmIpfx//jlgR2Zs4IxQZW2g=" />
+    <meta name="y_key" content="cf41528449b1ed12">
+
+    <!-- Les No Translate -->
+    <meta name="google" content="notranslate">
+
+    <!-- Les AJAX Crawling - 
+       Check https://prerender.io/js-seo/angularjs-seo-get-your-site-indexed-and-to-the-top-of-the-search-results/ 
+       https://developers.google.com/webmasters/ajax-crawling/docs/getting-started
+       Use only if in html5 mode urls and not hashbang
+    -->
+    <meta name="fragment" content="!">
+    <!--
+    FOLLOW UP ON
+    http://searchengineland.com/app-indexing-new-frontier-seo-apple-search-ios-app-indexing-223880
+    -->
+
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+    // dynamically add base tag as well as CSS and javascript files.
+    // we can't add css/js the usual way, because some browsers (FF) eagerly prefetch resources
+    // before the base attribute is added, causing 404 and terribly slow loading of the docs app.
+    (function() {
+        var indexFile = (location.pathname.match(/\/(index[^\.]*\.html)/) || ['', ''])[1],
+            rUrl = /(#!\/|api|guide|misc|tutorial|error|index[^\.]*\.html).*$/,
+            baseUrl = location.href.replace(rUrl, indexFile),
+            production = location.hostname === 'docs.angularjs.org',
+            headEl = document.getElementsByTagName('head')[0],
+            sync = true;
+
+        addTag('base', {href: baseUrl});
+
+        addTag('link', {rel: 'stylesheet', href: 'components/bootstrap-3.1.1/css/bootstrap.min.css', type: 'text/css'});
+    
+        /**
+         * Adds a tag to the body.
+         * 
+         * @param string name       the tag name
+         * @param object attributes the tag attributes
+         * @param boolean sync       
+         */
+        function addTag(name, attributes, sync) {
+            var el = document.createElement(name),
+                attrName;
+
+            for (attrName in attributes) {
+                el.setAttribute(attrName, attributes[attrName]);
+            }
+
+            sync ? document.write(outerHTML(el)) : headEl.appendChild(el);
+        }
+
+        /**
+         * [outerHTML description]
+         * @param  {[type]} node [description]
+         * @return {[type]}      [description]
+         */
+        function outerHTML(node){
+        // if IE, Chrome take the internal method otherwise build one
+            return node.outerHTML || (
+                function(n){
+                    var div = document.createElement('div'), 
+                        h;
+                    div.appendChild(n);
+                    h = div.innerHTML;
+                    div = null;
+                    return h;
+                })(node);
+        }
+    })();
+    </script>
+    <!-- Inline above-the-fold css here-->
+    <style>
+    </style>
+    <!-- Inject Riot.js styles here -->
+    <style type="riot"></style> 
+</head>
+<body class="ltr">
+    <!-- Facebook SDK root. Must be the first child element of the body tag -->
+    <div id="fb-root"></div>
+
+    <!-- This makes HTML5 elements work on IE 8 and earlier -->
+    <!--[if lt IE 8]>
+    <script>
+        document.createElement("section");
+        document.createElement("footer");
+        document.createElement("header");
+        document.createElement("nav");
+    </script>
+    <![endif]-->
+
+    <!-- Notfications audio -->
+    <audio style="display:none" preload="auto" id="update-sound" autobuffer>
+        <source src="audio/notification.mp3" type="audio/mp3">
+        <source src="audio/notification.ogg" type="audio/ogg">
+    </audio>
+
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">Voc&ecirc; est&aacute; usando um navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualize o seu navegador</a> para melhor usar o nosso site.</p>
+    <![endif]-->
+    
+    <div class="shell notifications" id="notifications" role="alert" aria-atomic="true">
+    <div class="notification info" role="alert" data-notification-id="1">
+    <div class="iconfont"></div>
+        <p>By using this site you agree to the use of cookies for analytics, personalised content and ads. <a href="https://go.skype.com/privacy/" target="_blank" class="strong">Read more about cookies</a></p>
+        <div class="close">
+            <button class="btn transparent circle" type="btn" data-dismiss-id="1"><span class="iconfont cross" data-dismiss-id="1">Dismiss notification</span></button>
+        </div>
+    </div>
+
+    <!-- Google analytics https://mathiasbynens.be/notes/async-analytics-snippet -->
+    <script>(function(G,o,O,g,l){G.GoogleAnalyticsObject=O;G[O]||(G[O]=function(){(G[O].q=G[O].q||[]).push(arguments)});G[O].l=+new Date;g=o.createElement('script'),l=o.scripts[0];g.src='https://www.google-analytics.com/analytics.js';l.parentNode.insertBefore(g,l)}(this,document,'ga'));ga('create','UA-XXXX-Y');ga('send','pageview')</script>
+<body>
+</html>
