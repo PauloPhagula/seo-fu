@@ -403,6 +403,16 @@
     </style>
 </head>
 <body class="ltr">
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXX');</script>
+    <!-- End Google Tag Manager -->
+    
     <!-- Facebook SDK root. Must be the first child element of the body tag -->
     <div id="fb-root"></div>
 
@@ -410,7 +420,9 @@
     <p class="browserupgrade">Voc&ecirc; est&aacute; usando um navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualize o seu navegador</a> para melhor usar o nosso site.</p>
     <![endif]-->
 
-    <!-- Google analytics Snippet by https://mathiasbynens.be/notes/async-analytics-snippet -->
+    <!-- Google analytics Snippet by https://mathiasbynens.be/notes/async-analytics-snippet
+        Note: If you're using Google Tag Manager with analytics tracking tags then do not include this.
+    -->
     <script>(function(G,o,O,g,l){G.GoogleAnalyticsObject=O;G[O]||(G[O]=function(){(G[O].q=G[O].q||[]).push(arguments)});G[O].l=+new Date;g=o.createElement('script'),l=o.scripts[0];g.src='https://www.google-analytics.com/analytics.js';l.parentNode.insertBefore(g,l)}(this,document,'ga'));ga('create','UA-XXXX-Y');ga('send','pageview')</script>
 </body>
 </html>
