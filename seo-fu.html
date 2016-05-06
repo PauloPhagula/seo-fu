@@ -124,19 +124,11 @@
     <link rel="help"      href="/faq"       title="title for FAQ page" />
     <link rel="glossary"  href="/glossary"  title="title for glossary page" />
 
-    <!-- Les Fav Icons & Mobile -->
-    <!-- If using SVG icon remove all following.-->
-    <link rel="icon" sizes="any" mask="true" href="favicons/favicon.svg">
-    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="favicons/favicon-194x194.png" sizes="194x194">
-    <!-- Android Manifest https://developers.google.com/web/fundamentals/device-access/stickyness/web-app-manifest -->
-    <link rel="manifest" href="android-manifest.json">
-
-    <link rel="shortcut icon" type="image/x-icon" href="favicons/apple-touch-icon-57x57.png">
-    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicons/apple-touch-icon-57x57.png" sizes="16x16 32x32 48x48">
+    <!-- Les Fav Icons & Mobile
+        Easiest way: Just drop a favicon.ico in the root of your site and skip this
+        or: read https://github.com/audreyr/favicon-cheat-sheetand and go crazy about it in a per case basis as you need or see fit
+    -->
+    <link rel="icon" href="/favicon.ico">
 
     <!-- Les Webpage Icon for Web Clip - 
          Check https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
@@ -203,6 +195,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="appName">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Android Manifest for Web App Install Banners https://developers.google.com/web/fundamentals/device-access/stickyness/web-app-manifest -->
+    <link rel="manifest" href="android-manifest.json">
 
     <!-- Les Smart App Banner - Check 
          https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
