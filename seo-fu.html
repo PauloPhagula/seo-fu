@@ -1,400 +1,463 @@
 ﻿<!DOCTYPE html>
 <html
-    class="no-js"
-    
-    dir="ltr"
+	class="no-js"
 
-    lang="pt-MZ"
+	dir="ltr"
 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:og="http://ogp.me/ns#"
-    xmlns:fb="http://www.facebook.com/2008/fbml"
-    xmlns:ng="http://angularjs.org"
+	lang="pt-MZ"
 
-    prefix="og: http://ogp.me/ns#
-            fb: http://ogp.me/ns/fb#
-            rdfs: http://www.w3.org/2000/01/rdf-schema# 
-            xsd: http://www.w3.org/2001/XMLSchema#"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:og="http://ogp.me/ns#"
+	xmlns:fb="http://www.facebook.com/2008/fbml"
 
-    manifest="appName.appcache" 
+	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema#"
 
-    data-ng-csp=""
-    data-ng-strict-di="true"
-
-    itemscope="" itemtype='http://schema.org/LocalBusiness'
->
+	manifest="appName.appcache">
 <head>
-    <!-- Les NoScript / Bad browser, Redirect to safe page before even downloading unnecessary stuff -->
-    <noscript><meta http-equiv="refresh" content="0; URL=/badbrowser"></noscript>
+	<!-- Don't use old <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />. Can be set on the server as a response header -->
+	<meta charset="utf-8">
 
-    <!-- Les Basic Meta -->
-    <meta charset="utf-8" />
-    <!-- 
-        "IE=edge" tells Internet Explorer to use the highest mode available to that version of IE
-        "chrome=1" tells Internet Explorer to use chrome frame plugin if installed. This is no longer supported since 2014/02
-        This can also be set site-wide using page headers
-        http://stackoverflow.com/questions/14637943/what-is-x-ua-compatible-when-it-references-ie-edge-chrome-1
-        http://www.chromium.org/developers/how-tos/chrome-frame-getting-started?csw=1
-        http://blog.chromium.org/2013/06/retiring-chrome-frame.html
-     -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; media-src *">
-    <!-- http://t.co/dKP3o1e -->
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="MobileOptimized" content="320" />
-    <meta name="viewport" content="width=device-width, 
-                                   initial-scale=1,
-                                   maximum-scale=1,
-                                   user-scalable=no,
-                                   minimal-ui" />
+	<!--
+		"IE=edge" tells Internet Explorer to use the highest mode available to that version of IE
+		"chrome=1" tells Internet Explorer to use chrome frame plugin if installed. This is no longer supported since 2014/02, so, drop it.
+		This can also be set site-wide using page response headers on the server
+		- http://stackoverflow.com/questions/14637943/what-is-x-ua-compatible-when-it-references-ie-edge-chrome-1
+		- http://www.chromium.org/developers/how-tos/chrome-frame-getting-started?csw=1
+		- http://blog.chromium.org/2013/06/retiring-chrome-frame.html
+	 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Disable Numbers from being interpreted as phonenumbers -->  
-    <meta http-equiv="x-rim-auto-match" content="none" />
-    <meta name="format-detection" content="telephone=no" />
+	<!-- Content Security Policy
+		- Touch if you know what you're doing. Can be set on the server as response headers
+		- http://githubengineering.com/githubs-csp-journey/
+	-->
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; media-src *"> -->
 
-    <!-- BEGIN: Chrome Perf hints 
-    - https://w3c.github.io/resource-hints/
-    - http://www.htmlgoodies.com/beyond/webmaster/how-your-browser-speeds-up-cross-domain-loading-using-dns-prefetching.html
-    - https://msdn.microsoft.com/en-us/library/dn265039(v=vs.85).aspx
-    -->
-        <!-- 1. Prefetch Hints
-          - pre-resolve DNS hostnames for assets later in the page!
-          - useful for critical resources later in the page
-          - useful for resources behind a redirect
-        -->
-        <meta http-equiv="x-dns-prefetch-control" content="on"/>
-        <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-        <link rel="dns-prefetch" href="//fonts.googleapis.com">
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link rel="dns-prefetch" href="//www.google-analytics.com">
+	<!-- If browser doesnt support JS redirect to safe page before even downloading unnecessary stuff -->
+	<noscript><meta http-equiv="refresh" content="0; URL=/badbrowser"></noscript>
 
-        <!-- 2. Subresource Hints 
-          - initiate early resource fetch for current navigation
-          - identifies critical resources required for current page load
-          - they should be placed as early as possible
-        -->
-        <link rel="subresource" href="critical/app.js">
-        <link rel="subresource" href="critical/style.css">
+	<!-- BEGIN: Chrome Perf hints
+	- https://w3c.github.io/resource-hints/
+	- http://www.htmlgoodies.com/beyond/webmaster/how-your-browser-speeds-up-cross-domain-loading-using-dns-prefetching.html
+	- https://msdn.microsoft.com/en-us/library/dn265039(v=vs.85).aspx
+	- https://www.nateberkopec.com/2015/11/05/page-weight-doesnt-matter.html
+	- https://css-tricks.com/prefetching-preloading-prebrowsing/
+	- https://www.igvita.com/2015/08/17/eliminating-roundtrips-with-preconnect/
+	- https://www.keycdn.com/support/preload-directive/
+	-->
 
-        <!-- 3. Prefetch Hints
-          - prefetch asset for a future navigation, place in cache...
-          - identifies a resource file, such as an image or a CSS stylesheet, to be downloaded into the cache.
-          - identifies resources that may be needed in future navigation
-          - have the lowest possible priority
-        -->
-        <link rel="prefetch" href="font.woff">
-        <link rel="preload" href="font.woff" as="font">
+		<!-- 1. DNS Prefetch Hints
+		  - tell supportive browsers to start prefetching the DNS for that domain a fraction before it's actually needed. 
+		    This means that the DNS lookup process will already be underway by the time the browser hits the script element that actually requests the widget. 
+		    It just gives the browser a small head start.
+		  - pre-resolve DNS hostnames for assets later in the page!
+		  - useful for critical resources later in the page
+		  - useful for resources behind a redirect
+		-->
+		<meta http-equiv="x-dns-prefetch-control" content="on">
+		<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+		<link rel="dns-prefetch" href="//fonts.googleapis.com">
+		<link rel="dns-prefetch" href="//fonts.gstatic.com">
+		<link rel="dns-prefetch" href="//www.google-analytics.com">
 
-        <!-- 4. Prerender hints
-          - prerender page in background tab for future navigation
-          - Identifies a webpage to load in the background, in case the user wants to navigate to it next.
-          - initiate background render of entire page
-          - the page is fetch, and all of its assets
-          - Use **Page Visibility API** to defer JS actionos until page is visible
-          - Only "safe" pages can be prerendered (aka, GET)
-          - Prerendering is resource heavy - use with caution
-        -->
-        <link rel="prerender" href="//example.org/next_page.html">
+		<!-- 2. Preconnect Hints
+		  - Much like the DNS prefetch method, preconnect will resolve the DNS but it will also make the TCP handshake, and optional TLS negotiation.
+		  - How often do you really want to know the DNS resolution of a host and then not connect to it?
+		    TL;DR skip dns-prefetch and use preconnect for it will do both.
+		-->
+		<link rel="preconnect" href="//cdnjs.cloudflare.com" crossorigin="anonymous">
+		<link rel="preconnect" href="//fonts.googleapis.com" crossorigin="anonymous">
+		<link rel="preconnect" href="//fonts.gstatic.com" crossorigin="anonymous">
+		<link rel="preconnect" href="//www.google-analytics.com" crossorigin="anonymous">
 
-    	<!-- 5. Responsive Image Client hints
-    	  - see: https://www.smashingmagazine.com/2016/01/leaner-responsive-images-client-hints/
-    	-->
-    	<meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width"> 
-    <!-- END: Chrome Perf hints -->
+		<!-- 3. Subresource Hints (deprecated)
+		  - initiate early resource fetch for current navigation
+		  - identifies critical resources required for current page load
+		  - they should be placed as early as possible
+		  - This is deprecate use preload bellow
+		-->
+		<link rel="subresource" href="critical/app.js">
+		<link rel="subresource" href="critical/style.css">
 
-    <!-- Les International Alternatives -->
-    <link rel="alternate" hreflang="x-default" href="https://www.appName.co.mz" />
-    <link rel="alternate" hreflang="en" href="https://www.appName.co.mz/en" title="English" />
-    <link rel="alternate" hreflang="fr" href="https://www.appName.co.mz/fr" title="Français" />
+		<!-- 3.1 Preload Hints
+		  - Preload is a new web standard that offers more control over how particular resources are fetched for the current navigation.
+		  - This is similar to what the (now deprecated) rel="subresource" directive set out to do. However, subresource was unable to define the priority of the resource, whereas preload does so with its `as` attribute.
+		  - Preload focusses on the current navigation and fetches resources with high-priority.
+		-->
+		<link rel="preload" href="/css/mystyles.css" as="style">
+		<link rel="preload" href="//example.com/fonts/font.woff" as="font" crossorigin>
 
-    <!-- Les Core Meta -->
-    <title>Home | appName</title>
-    <meta name="description" content="appName - description (Must vary per page as it describes each unique page)" />
-    <meta name="keywords" content="keywords (Must vary per page as they relate to each unique page)" />
-    <!-- The most prefered url for this page, irrespective of languages or other criteria -->
-    <link rel="canonical" href="http://www.appName.co.mz" />
-    <!-- The shortlink for the site. Use google or any other URL shortening service -->
-    <link rel="shortlink" href="http://goo.gl/" />
+		<!-- 4. Prefetch Hints
+		  - prefetch asset for a future navigation, place in cache...
+		  - identifies a resource file, such as an image or a CSS stylesheet, to be downloaded into the cache.
+		  - identifies resources that may be needed in future navigation
+		  - have the lowest possible priority
+		  - Note that the resource is only downloaded - it isn't parsed (if script) or rendered (if HTML).
+		-->
+		<link rel="prefetch" href="font.woff">
 
-    <link rel="home"      href="/"          title="title for home page" />
-    <link rel="index"     href="/"          title="title for home page" />
-    <link rel="start"     href="/"          title="title for home page" />
-    <link rel="top"       href="/"          title="title for page at top" />
-    <link rel="copyright" href="/copyright" title="title for copyright page" />
-    <link rel="help"      href="/faq"       title="title for FAQ page" />
-    <link rel="glossary"  href="/glossary"  title="title for glossary page" />
+		<!-- 5. Prerender hints
+		  - prerender page in background tab for future navigation
+		  - Identifies a webpage to load in the background, in case the user wants to navigate to it next.
+		  - initiate background render of entire page
+		  - the page is fetched along with all of its assets
+		  - Use **Page Visibility API** to defer JS actions until page is visible
+		  - Only "safe" pages can be prerendered (aka, GET)
+		  - Prerendering is resource heavy - use with caution
+		  - marking a normal <a> tag with it will actually cause the browser to get the linked href page and render it before the user even clicks the anchor
+		-->
+		<link rel="prerender" href="//example.org/next_page.html">
 
-    <!-- Les Fav Icons & Mobile
-        Easiest way: Just drop a favicon.ico in the root of your site and skip this
-        or: read https://github.com/audreyr/favicon-cheat-sheetand and go crazy about it in a per case basis as you need or see fit
-    -->
-    <link rel="icon" href="/favicon.ico">
+		<!-- 6. Responsive Image Client hints
+		  - see: https://www.smashingmagazine.com/2016/01/leaner-responsive-images-client-hints/
+		-->
+		<meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
 
-    <!-- Les Webpage Icon for Web Clip - 
-         Check https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
-         https://mathiasbynens.be/notes/touch-icons
-    -->
-    <link rel="apple-touch-icon" sizes="57x57"   href="favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60"   href="favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72"   href="favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76"   href="favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+	<!-- END: Chrome Perf hints -->
 
-    <!-- Apple Startup Images https://developers.google.com/web/fundamentals/device-access/stickyness/additional-customizations?hl=en-->
-    <!-- iOS 6 & 7 iPad (retina, portrait) -->
-    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" href="/static/images/apple-touch-startup-image-1536x2008.png">
-    <!-- iOS 6 & 7 iPad (retina, landscape) -->
-    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" href="/static/images/apple-touch-startup-image-1496x2048.png">
-    <!-- iOS 6 iPad (portrait) -->
-    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" href="/static/images/apple-touch-startup-image-768x1004.png">
-    <!-- iOS 6 iPad (landscape) -->
-    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" href="/static/images/apple-touch-startup-image-748x1024.png">
-    <!-- iOS 6 & 7 iPhone 5 -->
-    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="/static/images/apple-touch-startup-image-640x1096.png">
-    <!-- iOS 6 & 7 iPhone (retina) -->
-    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="/static/images/apple-touch-startup-image-640x920.png">
-    <!-- iOS 6 iPhone -->
-    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="/static/images/apple-touch-startup-image-320x460.png">
+	<!-- Les Core Meta -->
+	<title>Unique page title with 70 chars max.</title>
+	<meta name="description" content="Unique page description with 150 chars max">
+	<!-- <meta name="keywords" content="Don't bother your self with keywords. Google doesn't use them anymore." />-->
+	<!-- The most prefered url for this page, irrespective of languages or other criteria -->
+	<link rel="canonical" href="http://www.appName.co.mz">
+	<!-- The shortlink for the site. Use google or any other URL shortening service -->
+	<link rel="shortlink" href="http://goo.gl/">
 
-    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="appName">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<!-- Navigation context and orientation -->
+	<link rel="next"      href="/"          title="title for next page in the sequence the current page is in">
+	<link rel="prev"      href="/"          title="title for previous page in the sequence the current page is in">
+	<link rel="license"   href="/license"   title="title for license page">
+	<link rel="help"      href="/faq"       title="title for help page">
+	
+	<!-- Obsolete Nativational context and orientation
+	<link rel="home"      href="/"          title="title for home page">
+	<link rel="start"     href="/"          title="title for first page in the sequence the current page is in.">
+	<link rel="index"     href="/"          title="title for home page">
+	<link rel="first"     href="/"          title="title for first page">
+	<link rel="last"      href="/"          title="title for last page">
+	<link rel="archives"  href="/"          title="title for archives page">
+	<link rel="top"       href="/"          title="title for page in the top of the hierarchy the current page is in.">
+	<link rel="up"        href="/"          title="title for parent page in the hierarchy the current page is in.">
+	<link rel="glossary"  href="/glossary"  title="title for glossary page">
+	<link rel="copyright" href="/copyright" title="title for copyright page">
+	-->
 
-    <!-- Android Manifest for Web App Install Banners https://developers.google.com/web/fundamentals/device-access/stickyness/web-app-manifest -->
-    <link rel="manifest" href="android-manifest.json">
+	<!-- Les International Alternatives -->
+	<link rel="alternate" hreflang="x-default" href="https://www.appName.co.mz">
+	<link rel="alternate" hreflang="en" href="https://www.appName.co.mz/en" title="English">
+	<link rel="alternate" hreflang="fr" href="https://www.appName.co.mz/fr" title="Français">
 
-    <!-- Les Smart App Banner - Check 
-         https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
-         https://msdn.microsoft.com/en-us/library/hh781489(v=vs.85).aspx 
-    -->
-    <meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
-    <meta name="google-play-app"  content="app-id=mz.co.appName.mobile">
-    <meta name="msApplication-ID" content="microsoft.build.App"/>
-    <meta name="msApplication-PackageFamilyName" content="microsoft.build_8wekyb3d8bbwe"/>
+	<!-- Let google know which URL to use for Mobile devices-->
+	<link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.example.com/page-1">
+	<link rel="alternate" media="handheld" href="http://phone.example.com/page-1">
 
-    <!-- Les toolbar color for Chrome on Android-->
-    <meta name="theme-color" content="#125688">
+	<!-- Google Indexing for Mobile Apps -->
+	<link rel="alternate" href="android-app://android.appName/URL">
+	<link rel="alternate" href="ios-app://000000000/appName/URL">
 
-    <!-- Mobile Internet Explorer ClearType Technology -->    
-    <meta http-equiv="cleartype" content="on">
+	<!-- BEGIN: Mobile - http://t.co/dKP3o1e -->
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+		
+		<!-- Disable Numbers from being interpreted as phonenumbers -->
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="x-rim-auto-match" content="none">
+		
+		<!-- Mobile Internet Explorer ClearType Technology -->
+		<meta http-equiv="cleartype" content="on">
+	<!-- END: Mobile -->
+	
+	<!-- Fav Icons - Just drop a favicon.ico in the root of your site and skip this -->
+	<link rel="icon" href="/favicon.ico">
 
-    <!-- Let google know which URL to use for Mobile devices-->
-    <link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.example.com/page-1" />
-    <link rel="alternate" media="handheld" href="http://phone.example.com/page-1" />
+	<!-- BEGIN: Plaform Specifics -->
 
-    <!-- Google Indexing for Mobile Apps -->
-    <link rel="alternate" href="android-app://android.appName/URL">
-    <link rel="alternate" href="ios-app://000000000/appName/URL">
+		<!-- ANDROID
+			Since Chrome 31, you can set up your web app to have an application shortcut icon added to a device's homescreen,
+			and have the app launch in full-screen "app mode" using Chrome for Android’s "Add to homescreen" menu item.
 
-    <!-- Les IE9+ and Windows7+ Pinned Tabs Check
-       http://davidwalsh.name/msapplication-task
-       http://www.hanselman.com/blog/IE9SiteSpecificBrowsersAndAddingYourOwnJumpListItemsToPinnedTabs.aspx
-    -->
-    <meta name="application-name" content="appName">
-    <meta name="application-url" content="https://appName.co.mz">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="msapplication-tooltip" content="appName - description" />
-    <meta name="msapplication-starturl" content="./" />
-    <meta name="msapplication-navbutton-color" content="#FF3300" />
-    <meta name="msapplication-window" content="width=device-width;height=device-height" />
-    <meta name="msapplication-task" content="name=David Walsh Blog;action-uri=http://davidwalsh.name;icon-uri=http://davidwalsh.name/favicon.ico" />
-    <meta name="msapplication-task" content="name=David Walsh on Twitter;action-uri=http://twitter.com/davidwalshblog;icon-uri=http://twitter.com/favicon.ico" />
-    <meta name="msapplication-task" content="name=David Walsh on Facebook;action-uri=http://www.facebook.com/pages/David-Walsh-Blog/186644584869;icon-uri=https://s-static.ak.facebook.com/rsrc.php/yi/r/q9U99v3_saj.ico" />
-    <meta name="msapplication-task" content="name=David Walsh on LinkedIn;action-uri=http://il.linkedin.com/in/davidjameswalsh;icon-uri=http://linkedin.com/favicon.ico" />
+			New in Chrome 39, you can define the metadata associated with your web application in a JSON-based manifest.
+			The manifest provides a way to wrap metadata about a web application into a single file.
+			Using this metadata in conjunction with Add to Homescreen, you can create launch experiences more comparable to native applications.
 
-    <!-- Les Windows 8+ Pinned Live Tiles
-       Check
-       http://www.hanselman.com/blog/MakeAWindows81PinnedLiveTileForYOURWebsiteInMinutes.aspx
-    -->
-    <meta name="msapplication-config" content="/browserconfig.xml" />
+			https://developer.chrome.com/multidevice/android/overview
+			https://developer.chrome.com/multidevice/android/installtohomescreen
+			https://developers.google.com/web/fundamentals/device-access/stickyness/web-app-manifest
+		-->
 
-    <!-- Les Humans, Robots and Friends - Check 
-       http://www.robotstxt.org/ and 
-       http://humanstxt.org/
-       http://gmpg.org/xfn/
-    -->
-    <meta name="generator" content="appName">
-    <meta name="robots" content="index, follow">
-    <meta name="revisit-after" content="1 DAYS">
-    <link rel="author" type="text/plain" href="humans.txt" />
-    <link rel="publisher" href="https://plus.google.com/u/0/110969448173982102496" />
-    <meta name="contact" content="info@appName.co.mz" />
-    <meta name="geography" content="Mozambique">
-    <!-- XHTML Friends Network -->
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="me" type="text/html" href="http://twitter.com/appName" />
-    <link rel="me" type="text/html" href="http://facebook.com/appName" />
-    <link rel="me" type="text/html" href="http://plus.google.com/108573066018819777334?rel=me"/>
+		<!-- Chrome 31+ aka Pre 39 Settings -->
+		<!-- Makes your prototype chrome-less once bookmarked to your phone's home screen. If not set, don't do the rest -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Sets home screen clear icon for use on the homescreen following the guidance of Android Iconography. 192×192 is the recommended size for multiple resolutions. If it’s not defined on that size it will take 128×128. -->
+		<link rel="icon" sizes="192x192" href="img/touch/touch-icon-192x192.png">
+		<link rel="icon" sizes="128x128" href="img/touch/touch-icon-128x128.png">
 
-    <!-- Les Open ID -->
-    <link rel="openid.server" href="https://id.appName.co.mz/">
-    <link rel="openid.delegate" href="https://id.appName.co.mz/">
+		<!-- Chrome 39+ Settings-->
+		<link rel="manifest" href="android-manifest.json">
 
-    <!-- Les Twitter Card - Check - https://blog.bufferapp.com/twitter-cards-guide; https://dev.twitter.com/cards/getting-started-->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:url" content="">
-    <meta name="twitter:title" content="Twitter title">
-    <meta name="twitter:description" content="Twitter description">
-    <meta name="twitter:image" content="image URL">
-    <meta name="twitter:site" content="@appName"/> <!-- The Twitter account for the website/platform on which the content was published -->
-    <meta name="twitter:creator" content="@appName"> <!-- The Twitter account that created the content within the card -->
+		<!-- Apple Smartapp banners can be reproduced on android using jQuery plugin jquery.smartbanner which requires the setting bellow.
+			Native Android install banners require: the android manifest, site served via HTTPs, appcache and service workers for offline functionality, site is visited at least twice, with at least five minutes between visits.
+		-->
+		<meta name="google-play-app"  content="app-id=mz.co.appName.mobile">
 
-    <!-- Les Facebook - Check http://davidwalsh.name/facebook-meta-tags -->
-    <meta property="fb:page_id" content="fbPageID"/>
-    <meta property="fb:app_id" content="fbAppID"/>
-    <meta property="fb:admins" content="adminUser"/>
+		<!-- APPLE
+			https://mathiasbynens.be/notes/touch-icons
+			https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+			https://developers.google.com/web/fundamentals/device-access/stickyness/additional-customizations?hl=en
+			https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+			https://yoast.com/dev-blog/safari-pinned-tab-icon-mask-icon/
+		-->
 
-    <!-- Les Open Graph Tags - Check http://ogp.me/ -->
-    <meta property="og:locale" content="pt_PT" />
-    <meta property="og:locale:alternate" content="en_US" />
-    <meta property="og:locale:alternate" content="fr_FR" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Title" />
-    <meta property="og:description" content="description..." />
-    <meta property="og:url" content="http://current.url.com" />
-    <meta property="og:image" content="http://image.url.com/cover.jpg" />
-    <meta property="og:site_name" content="appName" />
+		<!-- Safari 9 Pinned tabs in El Capitan -->
+		<!-- don't use old syntax
+			<link rel="icon" sizes="any" mask href="mask-icon.svg">
+			<meta name="theme-color" content="#FFDD00">
+		-->
+		<link rel='mask-icon' href='dutch.svg' color='orange'>
 
-    <!-- Facebook Post Images. Can be repeated to allow choice when posting -->
-    <link rel="image_src" href="http://URL-TO-YOUR-IMAGE" />
+		<!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-title" content="appName">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Dublin Core Metadata : http://dublincore.org/ -->
-    <meta name="DC.title" content="" >
-    <meta name="DC.creator" content="">
-    <meta name="DC.subject" content="">
-    <meta name="DC.description" content="">
-    <meta name="DC.publisher" content="">
-    <meta name="DC.contributor" content="">
-    <meta name="DC.date" content="">
-    <meta name="DC.type" content="">
-    <meta name="DC.language" content="">
-    <meta name="DC.relation" scheme="URI" content="">
-    <meta name="DC.right" content="">
+		<!-- Web App laucher Icon -->
+		<link rel="apple-touch-icon" sizes="57x57"   href="favicons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60"   href="favicons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72"   href="favicons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76"   href="favicons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
 
-    <!-- Les Geo -->
-    <meta name="geo.placename" content="" />
-    <meta name="geo.position" content="" />
-    <meta name="geo.region" content="" />
-    <meta name="ICBM" content="" />
+		<!-- Apple Startup Images -->
+		<!-- iOS 6 & 7 iPad (retina, portrait) -->
+		<link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" href="/static/images/apple-touch-startup-image-1536x2008.png">
+		<!-- iOS 6 & 7 iPad (retina, landscape) -->
+		<link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" href="/static/images/apple-touch-startup-image-1496x2048.png">
+		<!-- iOS 6 iPad (portrait) -->
+		<link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" href="/static/images/apple-touch-startup-image-768x1004.png">
+		<!-- iOS 6 iPad (landscape) -->
+		<link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" href="/static/images/apple-touch-startup-image-748x1024.png">
+		<!-- iOS 6 & 7 iPhone 5 -->
+		<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="/static/images/apple-touch-startup-image-640x1096.png">
+		<!-- iOS 6 & 7 iPhone (retina) -->
+		<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="/static/images/apple-touch-startup-image-640x920.png">
+		<!-- iOS 6 iPhone -->
+		<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="/static/images/apple-touch-startup-image-320x460.png">
 
-    <!-- Les app links - Check http://applinks.org/documentation/-->
-    <meta property="al:iphone:url" content="applinks://docs" />
-    <meta property="al:iphone:app_name" content="appName" />
-    <meta property="al:android:app_name" content="appName" />
-    <meta property="al:android:package" content="mz.co.appName" />
-    <meta property="al:web:url" content="https://appName.co.mz" />
+		<!-- Smart app banner - https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html-->
+		<meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
 
-    <!-- Les RSS + ATOM Feed -->
-    <link rel="alternate" type="application/rss+xml" title="appName &raquo; Feed" href="http://appName.co.mz/feed/" />
-    <link rel="alternate" type="application/rss+xml" title="appName &raquo; Feed de blogs" href="http://appName.co.mz/blog/feed/" />
+		<!-- WINDOWS -->
+		<!-- Les windows 8 and Windows Store - https://msdn.microsoft.com/en-us/library/hh781489(v=vs.85).aspx -->
+		<meta name="msApplication-ID" content="microsoft.build.App">
+		<meta name="msApplication-PackageFamilyName" content="microsoft.build_8wekyb3d8bbwe">
 
-    <!-- Les Open Search -->
-    <link rel="search" type="application/opensearchdescription+xml" href="opensearch.xml" title="appName" />  
+		<!-- Les Windows 8+ Pinned Tabs and Live Tiles - http://www.hanselman.com/blog/MakeAWindows81PinnedLiveTileForYOURWebsiteInMinutes.aspx
+		-->
+		<meta name="msapplication-config" content="/browserconfig.xml">
 
-    <!-- Les Google Sitelinks 
-      Search Action description and Fixed Canonical URL to Home Page
-      Check http://schema.org/SearchAction
-    -->
-    <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "WebSite",
-        "publisher": "appName",
-        "description": "decription"
-        "url": "https://www.appName.co.mz/", // url - This property specifies the URL of your website. It must match the canonical URL of your domain's homepage
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.appName.co.mz/search?&q={query}",
-            "query-input": "required"
-        }
-    }
-    </script>
+		<!-- Les IE9+ and Windows7+ Pinned Tabs Check
+		   http://davidwalsh.name/msapplication-task
+		   http://www.hanselman.com/blog/IE9SiteSpecificBrowsersAndAddingYourOwnJumpListItemsToPinnedTabs.aspx
+		-->
+		<meta name="application-name" content="appName">
+		<meta name="application-url" content="https://appName.co.mz">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="msapplication-tooltip" content="appName - description">
+		<meta name="msapplication-starturl" content="./">
+		<meta name="msapplication-navbutton-color" content="#FF3300">
+		<meta name="msapplication-window" content="width=device-width;height=device-height">
+		<meta name="msapplication-task" content="name=David Walsh Blog;action-uri=http://davidwalsh.name;icon-uri=http://davidwalsh.name/favicon.ico">
+		<meta name="msapplication-task" content="name=David Walsh on Twitter;action-uri=http://twitter.com/davidwalshblog;icon-uri=http://twitter.com/favicon.ico">
+		<meta name="msapplication-task" content="name=David Walsh on Facebook;action-uri=http://www.facebook.com/pages/David-Walsh-Blog/186644584869;icon-uri=https://s-static.ak.facebook.com/rsrc.php/yi/r/q9U99v3_saj.ico">
+		<meta name="msapplication-task" content="name=David Walsh on LinkedIn;action-uri=http://il.linkedin.com/in/davidjameswalsh;icon-uri=http://linkedin.com/favicon.ico">
 
-    <script type='application/ld+json'>
-    {
-        "@context":"http://schema.org",
-        "@type":"Organization",
-        "name":"appName",
-        "url":"https://www.appName.co.mz",
-        "logo":"https://www.appName.co.mz/img/logo.png",
-        "sameAs":[
-            "https://www.facebook.com/appName",
-            "https://plus.google.com/+appName"
-        ],
-        "contactPoint" : [{
-            "@type" : "ContactPoint",
-            "telephone" : "+111111111",
-            "contactType" : "customer service",
-            "availableLanguage" : [
-                "English",
-                "French",
-                "Spanish",
-                "Dutch",
-                "German"
-            ]
-        }]
-    }
-    </script>
+		<!-- Firefox OS -->
+		<!-- https://developer.mozilla.org/en-US/docs/Archive/Firefox_OS/Firefox_OS_apps/Building_apps_for_Firefox_OS/Manifest#fullscreen -->
 
-    <!-- Les Verification -->
-    <meta name="alexaVerifyID" content="" />
-    <meta name="msvalidate.01" content="" />
-    <meta name="google-site-verification" content="" />
-    <meta name="yandex-verification" content="" />
-    <meta name="verify-v1" content="" />
-    <meta name="y_key" content="">
+	<!-- END Plaform Specifics -->
 
-    <!-- Les No Translate -->
-    <meta name="google" content="notranslate">
+	<!-- Les Humans, Robots and Friends
+		 http://www.robotstxt.org/
+		 http://humanstxt.org/
+		 http://gmpg.org/xfn/
+	-->
+	<meta name="robots" content="index, follow">
+	<meta name="revisit-after" content="1 DAYS">
+	<link rel="author" type="text/plain" href="humans.txt"> <!-- Some people do <link rel="author" href="/about"> -->
+	<link rel="publisher" href="https://plus.google.com/u/0/110969448173982102496">
+	<!-- XHTML Friends Network -->
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="me" type="text/html" href="http://twitter.com/appName">
+	<link rel="me" type="text/html" href="http://facebook.com/appName">
+	<link rel="me" type="text/html" href="http://plus.google.com/108573066018819777334?rel=me">
 
-    <!-- Les AJAX Crawling - 
-       Check https://prerender.io/js-seo/angularjs-seo-get-your-site-indexed-and-to-the-top-of-the-search-results/ 
-       https://developers.google.com/webmasters/ajax-crawling/docs/getting-started
-       Use only if in html5 mode urls and not hashbang
-    -->
-    <meta name="fragment" content="!">
-    <!--
-    FOLLOW UP ON
-    http://searchengineland.com/app-indexing-new-frontier-seo-apple-search-ios-app-indexing-223880
-    -->
+	<!-- Les Open ID -->
+	<link rel="openid.server" href="https://id.appName.co.mz/">
+	<link rel="openid.delegate" href="https://id.appName.co.mz/">
 
-    <!-- IE Fix for HTML5 Tags -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+	<!-- Les Twitter Card - Check - https://blog.bufferapp.com/twitter-cards-guide; https://dev.twitter.com/cards/getting-started-->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:url" content="">
+	<meta name="twitter:title" content="Twitter title">
+	<meta name="twitter:description" content="Twitter description">
+	<meta name="twitter:image" content="image URL">
+	<meta name="twitter:site" content="@appName"> <!-- The Twitter account for the website/platform on which the content was published -->
+	<meta name="twitter:creator" content="@appName"> <!-- The Twitter account that created the content within the card - useful for blogs with many authors -->
 
-    <!-- Inline above-the-fold css here see:
-        http://www.smashingmagazine.com/2014/09/improving-smashing-magazine-performance-case-study/#inlining-critical-css
-    -->
-    <style>
-    </style>
+	<!-- Les Facebook - Check http://davidwalsh.name/facebook-meta-tags -->
+	<meta property="fb:page_id" content="fbPageID">
+	<meta property="fb:app_id" content="fbAppID">
+	<meta property="fb:admins" content="adminUser,adminUser2">
+
+	<!-- Les Open Graph Tags - Check http://ogp.me/ -->
+	<meta property="og:locale" content="pt_PT">
+	<meta property="og:locale:alternate" content="en_US">
+	<meta property="og:locale:alternate" content="fr_FR">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Title">
+	<meta property="og:description" content="description...">
+	<meta property="og:url" content="http://current.url.com">
+	<meta property="og:image" content="http://image.url.com/cover.jpg">
+	<meta property="og:site_name" content="appName">
+
+	<!-- Facebook Post Images. Can be repeated to allow choice when posting -->
+	<link rel="image_src" href="http://URL-TO-YOUR-IMAGE">
+
+	<!-- Dublin Core Metadata : http://dublincore.org/ -->
+	<meta name="DC.title" content="" >
+	<meta name="DC.creator" content="">
+	<meta name="DC.subject" content="">
+	<meta name="DC.description" content="">
+	<meta name="DC.publisher" content="">
+	<meta name="DC.contributor" content="">
+	<meta name="DC.date" content="">
+	<meta name="DC.type" content="">
+	<meta name="DC.language" content="">
+	<meta name="DC.relation" scheme="URI" content="">
+	<meta name="DC.right" content="">
+
+	<!-- Les Geo -->
+	<meta name="geo.placename" content="">
+	<meta name="geo.position" content="">
+	<meta name="geo.region" content="">
+	<meta name="ICBM" content="">
+
+	<!-- Les app links - Check http://applinks.org/documentation/-->
+	<meta property="al:iphone:url" content="applinks://docs">
+	<meta property="al:iphone:app_name" content="appName">
+	<meta property="al:android:app_name" content="appName">
+	<meta property="al:android:package" content="mz.co.appName">
+	<meta property="al:web:url" content="https://appName.co.mz">
+
+	<!-- Les RSS + ATOM Feed -->
+	<link rel="alternate" type="application/rss+xml" title="appName - Feed" href="http://appName.co.mz/feed/">
+	<link rel="alternate" type="application/rss+xml" title="appName - Feed de blogs" href="http://appName.co.mz/blog/feed/">
+
+	<!-- Les Open Search -->
+	<link rel="search" type="application/opensearchdescription+xml" href="opensearch.xml" title="appName">
+
+	<!-- Les Google Sitelinks
+	  Search Action description and Fixed Canonical URL to Home Page
+	  Check http://schema.org/SearchAction
+	-->
+
+	<!-- This comes on the home page only -->
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "WebSite",
+		"publisher": "appName",
+		"description": "decription"
+		"url": "https://www.appName.co.mz/", // url - This property specifies the URL of your website. It must match the canonical URL of your domain's homepage
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https://www.appName.co.mz/search?&q={query}",
+			"query-input": "required"
+		}
+	}
+	</script>
+
+	<!-- This comes on the home page only -->
+	<script type='application/ld+json'>
+	{
+		"@context":"http://schema.org",
+		"@type":"Organization",
+		"name":"appName",
+		"url":"https://www.appName.co.mz",
+		"logo":"https://www.appName.co.mz/img/logo.png",
+		"sameAs":[
+			"https://www.facebook.com/appName",
+			"https://plus.google.com/+appName"
+		],
+		"contactPoint" : [{
+			"@type" : "ContactPoint",
+			"telephone" : "+111111111",
+			"contactType" : "customer service",
+			"availableLanguage" : [
+				"English",
+				"French",
+				"Spanish",
+				"Dutch",
+				"German"
+			]
+		}]
+	}
+	</script>
+
+	<!-- Les Verification -->
+	<meta name="alexaVerifyID" content="">
+	<meta name="msvalidate.01" content="">
+	<meta name="google-site-verification" content="">
+	<meta name="yandex-verification" content="">
+	<meta name="verify-v1" content="">
+	<meta name="y_key" content="">
+
+	<!-- Les No Translate -->
+	<meta name="google" content="notranslate">
+
+	<!-- Les AJAX Crawling -
+	   Check https://prerender.io/js-seo/angularjs-seo-get-your-site-indexed-and-to-the-top-of-the-search-results/
+	   https://developers.google.com/webmasters/ajax-crawling/docs/getting-started
+	   Use only if in html5 mode urls and not hashbang
+	-->
+	<meta name="fragment" content="!">
+
+	<!--
+	FOLLOW UP ON
+	http://searchengineland.com/app-indexing-new-frontier-seo-apple-search-ios-app-indexing-223880
+	-->
+
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+	<script async src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Inline above-the-fold css here - http://www.smashingmagazine.com/2014/09/improving-smashing-magazine-performance-case-study/#inlining-critical-css -->
+	<style id="above-the-fold-css"></style>
+	<script id="above-the-fold-js"></script>
 </head>
-<body class="ltr">
-    <!-- Google Tag Manager -->
-    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXX');</script>
-    <!-- End Google Tag Manager -->
-    
-    <!-- Facebook SDK root. Must be the first child element of the body tag -->
-    <div id="fb-root"></div>
+<body class="ltr" itemscope itemtype='http://schema.org/LocalBusiness'>
+	<!-- Google Tag Manager -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-XXXXXX');</script>
+	<!-- End Google Tag Manager -->
 
-    <!--[if lt IE 8]>
-    <p class="browserupgrade">Voc&ecirc; est&aacute; usando um navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualize o seu navegador</a> para melhor usar o nosso site.</p>
-    <![endif]-->
+	<!-- Facebook SDK root. Must be the first child element of the body tag -->
+	<div id="fb-root"></div>
 
-    <!-- Google analytics Snippet by https://mathiasbynens.be/notes/async-analytics-snippet
-        Note: If you're using Google Tag Manager with analytics tracking tags then do not include this.
-    -->
-    <script>(function(G,o,O,g,l){G.GoogleAnalyticsObject=O;G[O]||(G[O]=function(){(G[O].q=G[O].q||[]).push(arguments)});G[O].l=+new Date;g=o.createElement('script'),l=o.scripts[0];g.src='https://www.google-analytics.com/analytics.js';l.parentNode.insertBefore(g,l)}(this,document,'ga'));ga('create','UA-XXXX-Y');ga('send','pageview')</script>
+	<!--[if lt IE 8]>
+	<p class="browserupgrade">Voc&ecirc; est&aacute; usando um navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualize o seu navegador</a> para melhor usar o nosso site.</p>
+	<![endif]-->
 </body>
 </html>
