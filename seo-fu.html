@@ -11,6 +11,8 @@
 	xmlns:fb="http://www.facebook.com/2008/fbml"
 
 	prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# rdfs: http://www.w3.org/2000/01/rdf-schema# xsd: http://www.w3.org/2001/XMLSchema#"
+
+	manifest="appName.appcache"
 >
 <head>
 	<!-- Don't use old <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />. Can be set on the server as a response header -->
@@ -347,7 +349,7 @@
 	<meta name="geo.region" content="">
 	<meta name="ICBM" content="">
 
-	<!-- Les app links - Check http://applinks.org/documentation/-->
+	<!-- Les deep-linking app links - Check http://applinks.org/documentation/-->
 	<meta property="al:iphone:url" content="applinks://docs">
 	<meta property="al:iphone:app_name" content="appName">
 	<meta property="al:android:app_name" content="appName">
@@ -434,7 +436,11 @@
 
 	<!-- IE Fix for HTML5 Tags -->
 	<!--[if lt IE 9]>
-	<script async src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
 	<![endif]-->
 
 	<!-- Inline above-the-fold css here - http://www.smashingmagazine.com/2014/09/improving-smashing-magazine-performance-case-study/#inlining-critical-css -->
@@ -458,5 +464,7 @@
 	<!--[if lt IE 8]>
 	<p class="browserupgrade">Voc&ecirc; est&aacute; usando um navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualize o seu navegador</a> para melhor usar o nosso site.</p>
 	<![endif]-->
+
+	<!-- SITE MARKUP COMES BELLOW -->
 </body>
 </html>
