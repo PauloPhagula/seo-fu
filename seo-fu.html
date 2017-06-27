@@ -156,7 +156,10 @@
 	<!-- BEGIN: Mobile - http://t.co/dKP3o1e -->
 		<meta name="HandheldFriendly" content="True">
 		<meta name="MobileOptimized" content="320">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+		<!-- don't put minimal-ui here. It was added by apple and then got deprecated
+			See: https://github.com/WebKit/webkit/blob/master/Source/WebCore/dom/ViewportArguments.cpp#L414
+		-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		
 		<!-- Disable Numbers from being interpreted as phonenumbers -->
 		<meta name="format-detection" content="telephone=no">
