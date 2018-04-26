@@ -44,8 +44,8 @@
 	-->
 
 		<!-- 1. DNS Prefetch Hints
-		  - tell supportive browsers to start prefetching the DNS for that domain a fraction before it's actually needed. 
-		    This means that the DNS lookup process will already be underway by the time the browser hits the script element that actually requests the widget. 
+		  - tell supportive browsers to start prefetching the DNS for that domain a fraction before it's actually needed.
+		    This means that the DNS lookup process will already be underway by the time the browser hits the script element that actually requests the widget.
 		    It just gives the browser a small head start.
 		  - pre-resolve DNS hostnames for assets later in the page!
 		  - useful for critical resources later in the page
@@ -126,7 +126,7 @@
 	<link rel="prev"      href="/"          title="title for previous page in the sequence the current page is in">
 	<link rel="license"   href="/license"   title="title for license page">
 	<link rel="help"      href="/faq"       title="title for help page">
-	
+
 	<!-- Obsolete Nativational context and orientation
 	<link rel="home"      href="/"          title="title for home page">
 	<link rel="start"     href="/"          title="title for first page in the sequence the current page is in.">
@@ -158,17 +158,19 @@
 		<meta name="MobileOptimized" content="320">
 		<!-- don't put minimal-ui here. It was added by apple and then got deprecated
 			See: https://github.com/WebKit/webkit/blob/master/Source/WebCore/dom/ViewportArguments.cpp#L414
+			Refs:
+			https://bitsofco.de/ios-safari-and-shrink-to-fit/
 		-->
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+
 		<!-- Disable Numbers from being interpreted as phonenumbers -->
 		<meta name="format-detection" content="telephone=no">
 		<meta http-equiv="x-rim-auto-match" content="none">
-		
+
 		<!-- Mobile Internet Explorer ClearType Technology -->
 		<meta http-equiv="cleartype" content="on">
 	<!-- END: Mobile -->
-	
+
 	<!-- Fav Icons - Just drop a favicon.ico in the root of your site and skip this -->
 	<link rel="icon" href="/favicon.ico">
 
